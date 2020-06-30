@@ -48,9 +48,13 @@ function radians(teta) {
 function drawScreen() {
     paper.project.clear();
 
+    let pictureWidth = pictureWidthFunction(currentB, currentTeta, currentN);
     let oneLineWidth = oneLineWidthFunction(currentA, currentB, currentLambda, currentTeta, currentN);
-    let hueLambda = hueLambdaFunction(currentLambda);
 
+    console.log(pictureWidth + " - pictureWith");
+    console.log(oneLineWidth + " - oneLineWith");
+
+    let hueLambda = hueLambdaFunction(currentLambda);
     let colors = getColors(oneLineWidth, hueLambda);
 
     let point = new paper.Point({
@@ -149,10 +153,10 @@ function createRightRectangle(oneLineWidth, point, colors) {
 }
 
 function oneLineWidthFunction(a, b, lambda, teta, n) {
-    return (a + b) * lambda * (1e-3) / (2 * a * teta * (n - 1));
+    return (a + b) * lambda * (1e-9) / (2 * a * teta * (n - 1));
 }
 
-function pictureWidth(b, teta, n) {
+function pictureWidthFunction(b, teta, n) {
     return 2 * b * teta * (n - 1);
 }
 
