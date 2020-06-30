@@ -31,5 +31,12 @@
 
 .pictures {
     display: flex;
+}
 
+.static-picture,
+.result-picture,
+#screen,
+#static {
+    height:  500px;
+    max-width:  500px;
 }
