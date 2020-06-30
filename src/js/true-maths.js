@@ -30,7 +30,7 @@ $(document).ready(function () {
     defaultLambda = currentLambda;
     defaultN = currentN;
 
-    $('#a-label').text(currentA + " см");
+    $('#a-label').text(100 * currentA + " см");
     $('#b-label').text(currentB + " м");
     $('#n-label').text(currentN);
     $('#lambda-label').text(currentLambda + " нм");
