@@ -15,7 +15,7 @@ let defaultN;
 
 
 $(document).ready(function () {
-    console.log(SCREEN_WIDTH);
+    // console.log(SCREEN_WIDTH);
     paper.setup(document.getElementById("screen"));
 
     //перевод из см в м
@@ -125,9 +125,9 @@ function drawScreen() {
     let hueLambda = hueLambdaFunction(currentLambda);
     let colors = getColors(oneLineWidth, hueLambda);
 
-    console.log("pictureWidth: " + pictureWidth);
-    console.log("oneLineWidth: " + oneLineWidth);
-    console.log("lineNumber: " + lineNumber);
+    // console.log("pictureWidth: " + pictureWidth);
+    // console.log("oneLineWidth: " + oneLineWidth);
+    // console.log("lineNumber: " + lineNumber);
     let points = createPoints(pictureWidth, lineNumber, oneLineWidth);
 
     points.forEach((point) => {
@@ -162,7 +162,7 @@ function getColors(oneLineWidth, hueLambda) {
 function createPoints(pictureWidth, lineNumber, oneLineWidth) {
     let points = [];
     let spaceBetweenLines = spaceBetweenLinesFunction(pictureWidth, oneLineWidth, lineNumber);
-    console.log("space: " + spaceBetweenLines);
+    // console.log("space: " + spaceBetweenLines);
 
     for (let i = 0; i < lineNumber; i++) {
         let x = 0;
@@ -178,7 +178,7 @@ function createPoints(pictureWidth, lineNumber, oneLineWidth) {
             y: 0
         }));
 
-        console.log("x" + i + ": " + x);
+        // console.log("x" + i + ": " + x);
     }
 
     return points;
