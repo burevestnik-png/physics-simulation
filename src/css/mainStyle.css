@@ -7,6 +7,11 @@
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
     -moz-user-select: none;      /* Firefox */
     -ms-user-select: none;       /* Internet Explorer/Edge */
+    color: white;
+}
+
+body {
+    background: linear-gradient(#141e30, #243b55);
 }
 
 .main {
@@ -49,11 +54,21 @@
     align-items: center;
 }
 
-.static-picture,
-.result-picture,
-#static {
+.result-picture {
     height:  300px;
     width:  100%;
+}
+
+.biprizm-picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.result-picture {
+    display: flex;
+    justify-content: center;
 }
 
 #screen {
@@ -90,22 +105,22 @@
 
 #reset {
     border-radius: 5px;
-    background-color: white;
+    background-color: #121c29;
     outline: none;
 }
 
 #reset:hover {
-    background-color: grey;
+    background-color: #243b55;
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     bottom: 0;
-    background-color: grey;
+    background-color: #121c29;
     height: 80px;
     width: 100%;
 }
@@ -128,4 +143,8 @@
 
 .logo:hover {
     box-shadow: 0 0 2px 1px grey;
+}
+
+.mok-logo {
+    margin-left: 15px;
 }
