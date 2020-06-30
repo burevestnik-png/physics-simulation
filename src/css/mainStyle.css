@@ -48,10 +48,14 @@
 
 .static-picture,
 .result-picture,
-#screen,
 #static {
     height:  300px;
     width:  100%;
+}
+
+#screen {
+    height: 300px;
+    width: 1500px;
 }
 
 .form {
