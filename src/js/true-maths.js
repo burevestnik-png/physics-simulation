@@ -4,22 +4,37 @@ let currentLambda;
 let currentTeta;
 let currentN;
 
+let defaultA;
+let defaultB;
+let defaultLambda;
+let defaultTeta;
+let defaultN;
+
+
 $(document).ready(function () {
     paper.setup(document.getElementById("screen"));
 
     currentA = Number($('#a-input').val());
     currentB = Number($('#b-input').val());
     currentLambda = Number($('#lambda-input').val());
+    defaultTeta = Number($('#teta-input').val());
     currentTeta = radians(Number($('#teta-input').val()));
     currentN = Number($('#n-input').val());
 
-    $('#a-label').text(currentA + " м");
+    defaultA = currentA;
+    defaultB = currentB
+    defaultLambda = currentLambda;
+    defaultN = currentN;
+
+    $('#a-label').text(currentA + " см");
     $('#b-label').text(currentB + " м");
     $('#n-label').text(currentN);
+    $('#lambda-label').text(currentLambda + " нм");
+    $('#teta-label').text(Number($("#teta-input").val()) + " градусов");
 
     $('#a-input').on('input', function () {
         currentA = Number($(this).val());
-        $('#a-label').text(currentA + " м");
+        $('#a-label').text(currentA + " см");
         drawScreen();
     });
 
@@ -37,13 +52,35 @@ $(document).ready(function () {
 
     $('#teta-input').on('input', function () {
         currentTeta = radians(Number($(this).val()));
-        $('#teta-label').text(currentTeta + " радиан");
+        $('#teta-label').text(Number($(this).val()) + " градусов");
         drawScreen();
     });
 
     $('#lambda-input').on('input', function () {
         currentLambda = Number($(this).val());
         $('#lambda-label').text(currentLambda + " нм");
+        drawScreen();
+    });
+
+    $('#reset').click(function () {
+        currentN = defaultN;
+        currentTeta = radians(defaultTeta);
+        currentA = defaultA;
+        currentB = defaultB;
+        currentLambda = defaultLambda;
+
+        $('#a-label').text(defaultN + " см");
+        $('#b-label').text(defaultB + " м");
+        $('#n-label').text(defaultN);
+        $('#lambda-label').text(currentLambda + " нм");
+        $('#teta-label').text(defaultTeta + " градусов");
+
+        $('#a-input').val(defaultA);
+        $('#b-input').val(defaultB);
+        $('#n-input').val(defaultN);
+        $('#lambda-input').val(defaultLambda);
+        $('#teta-input').val(defaultTeta);
+
         drawScreen();
     });
 

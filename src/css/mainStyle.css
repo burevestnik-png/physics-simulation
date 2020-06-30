@@ -2,6 +2,10 @@
 
 * {
     font-family: 'Roboto', sans-serif;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
 }
 
 .header {
@@ -31,16 +35,19 @@
 
 .pictures {
     display: flex;
-    max-width: 90%;
+    max-width: 78.125%;
     margin: 40px auto auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .static-picture,
 .result-picture,
 #screen,
 #static {
-    height:  500px;
-    max-width:  500px;
+    height:  300px;
+    width:  100%;
 }
 
 .form {
@@ -61,4 +68,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#reset {
+    border-radius: 5px;
+    background-color: white;
+    outline: none;
+}
+
+#reset:hover {
+    background-color: grey;
 }
