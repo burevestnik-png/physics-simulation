@@ -3,83 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <title>Simulation</title>
-    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
-    <link rel="stylesheet" href="src/css/mainStyle.css">
+    <link href="node_modules/normalize.css/normalize.css" rel="stylesheet">
+    <link href="src/css/mainStyle.css" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+<header class="header">
         <span class="simulation-name">
             Бипризма Френеля
         </span>
 
-        <div class="made-by">
+    <div class="made-by">
             <span class="lesha">
                 Алексей Егошин, P3113
             </span>
-            <span class="yarik">
+        <span class="yarik">
                 Ярослав Кулинич aka Yarki, P3113
             </span>
+    </div>
+</header>
+
+<main class="main">
+    <div class="pictures">
+        <div class="static-picture">
+            <canvas id="static">
+
+            </canvas>
         </div>
-    </header>
+        <div class="result-picture">
+            <canvas id="screen">
 
-    <main class="main">
-        <div class="pictures">
-            <div class="static-picture">
-                <canvas id="static">
+            </canvas>
+        </div>
+    </div>
 
-                </canvas>
-            </div>
-            <div class="result-picture">
-                <canvas id="screen">
+    <form class="form">
+        <div class="a-block mok-grid">
+            <label class="a-label" for="a-input">
+                Расстояние от источника до призмы
+            </label>
 
-                </canvas>
+            <div class="slider">
+                <span class="input-value">1</span>
+                <input id="a-input" class="range" max="10" min="0" value="1" type="range">
+                <div class="minmax">
+                    <span>0</span>
+                    <span>10</span>
+                </div>
             </div>
         </div>
 
-        <form class="form">
-            <div class="a-block">
-                <label for="a-input" class="a-label">
-                    Расстояние от источника до призмы
-                </label>
-                <input type="range" id="a-input" min="0" max="10">
-            </div>
+        <div class="b-block mok-grid">
+            <label class="b-label" for="b-input">
+                Расстояние от призмы до экрана
+            </label>
+            <input id="b-input" max="10" min="0" type="range">
+        </div>
 
-            <div class="b-block">
-                <label for="b-input" class="b-label">
-                    Расстояние от призмы до экрана
-                </label>
-                <input type="range" id="b-input" min="0" max="10">
-            </div>
+        <div class="lambda-block mok-grid">
+            <label class="lambda-label" for="lambda-input">
+                Длина волны
+            </label>
+            <input id="lambda-input" max="780" min="380" step="10" type="range">
+        </div>
 
-            <div class="lambda-block">
-                <label for="lambda-input" class="lambda-label">
-                    Длина волны
-                </label>
-                <input type="range" id="lambda-input" min="380" max="780" step="10">
-            </div>
+        <div class="teta-block mok-grid">
+            <label class="teta-label" for="teta-input">
+                Угол отклонения
+            </label>
+            <input id="teta-input" max="10" min="0" type="range">
+        </div>
 
-            <div class="teta-block">
-                <label for="teta-input" class="teta-label">
-                    Угол отклонения
-                </label>
-                <input type="range" id="teta-input" min="0" max="10">
-            </div>
+        <div class="n-block mok-grid">
+            <label class="n-label" for="n-input">
+                Показатель преломления призмы
+            </label>
+            <input id="n-input" max="1.55" min="1.45" step="0.01" type="range">
+        </div>
+    </form>
+</main>
 
-            <div class="n-block">
-                <label for="n-input" class="n-label">
-                    Показатель преломления призмы
-                </label>
-                <input type="range" id="n-input" min="1.45" max="1.55" step="0.01">
-            </div>
-        </form>
-    </main>
+<footer class="footer">
 
-    <footer class="footer">
-
-    </footer>
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="node_modules/paperjs-v0.12.11/dist/paper-core.min.js"></script>
-    <script type="text/javascript" src="node_modules/paperjs-v0.12.11/dist/paper-full.min.js"></script>
-    <script type="text/javascript" src="src/js/true-maths.js"></script>
+</footer>
+<script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="node_modules/paperjs-v0.12.11/dist/paper-core.min.js" type="text/javascript"></script>
+<script src="node_modules/paperjs-v0.12.11/dist/paper-full.min.js" type="text/javascript"></script>
+<script src="src/js/true-maths.js" type="text/javascript"></script>
 </body>
 </html>
