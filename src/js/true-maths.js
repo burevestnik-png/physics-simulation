@@ -13,28 +13,37 @@ $(document).ready(function () {
     currentTeta = radians(Number($('#teta-input').val()));
     currentN = Number($('#n-input').val());
 
+    $('#a-label').text(currentA + " м");
+    $('#b-label').text(currentB + " м");
+    $('#n-label').text(currentN);
+
     $('#a-input').on('input', function () {
         currentA = Number($(this).val());
+        $('#a-label').text(currentA + " м");
         drawScreen();
     });
 
     $('#b-input').on('input', function () {
         currentB = Number($(this).val());
+        $('#b-label').text(currentB + " м");
         drawScreen();
     });
 
     $('#n-input').on('input', function () {
         currentN = Number($(this).val());
+        $('#n-label').text(currentN);
         drawScreen();
     });
 
     $('#teta-input').on('input', function () {
         currentTeta = radians(Number($(this).val()));
+        $('#teta-label').text(currentTeta + " радиан");
         drawScreen();
     });
 
     $('#lambda-input').on('input', function () {
         currentLambda = Number($(this).val());
+        $('#lambda-label').text(currentLambda + " нм");
         drawScreen();
     });
 
