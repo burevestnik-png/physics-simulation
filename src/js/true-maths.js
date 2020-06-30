@@ -12,23 +12,23 @@ $(document).ready(function () {
     currentN = Number($('#n-input').val());
 
     $('#a-input').change(function () {
-        currentA = $(this).valueAsNumber;
+        currentA = Number($(this).val());
     });
 
     $('#b-input').change(function () {
-        currentB = $(this).valueAsNumber;
+        currentB = Number($(this).val());
     });
 
     $('#n-input').change(function () {
-        currentN = $(this).valueAsNumber;
+        currentN = Number($(this).val());
     });
 
     $('#teta-input').change(function () {
-        currentTeta = $(this).valueAsNumber;
+        currentTeta = Number($(this).val());
     });
 
     $('#lambda-input').change(function () {
-        currentLambda = $(this).valueAsNumber;
+        currentLambda = Number($(this).val());
     });
 
     paper.setup(document.getElementById("screen"));
