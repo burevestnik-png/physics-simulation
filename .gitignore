@@ -15,6 +15,3 @@
 /node_modules/jquery/dist/jquery.slim.min.js
 /node_modules/jquery/dist/jquery.slim.min.map
 /node_modules/jquery/dist/jquery.js
-
-# Project exclude paths
-/node_modules/
