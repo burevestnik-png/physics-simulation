@@ -39,7 +39,7 @@ $(document).ready(function () {
     console.log(oneLineWidth + " + " + hueLambda);
 
     let colors = [];
-    for (let x = 0; x <= oneLineWidth; x+= oneLineWidth / 100) {
+    for (let x = 0; x < oneLineWidth; x+= oneLineWidth / 100) {
         colors.push({
             hue: hueLambda,
             saturation: 1,
@@ -51,21 +51,39 @@ $(document).ready(function () {
     console.log(colors);
 
     let point = new paper.Point({
-        x: 50,
-        y: 100
+        x: 100,
+        y: 0
     });
-    let rectangle = new paper.Path.Rectangle({
-        rectangle: paper.view.bounds,
+    let rectangleRight = new paper.Path.Rectangle({
+        topLeft: point,
+        size: {
+            width: oneLineWidth / 2,
+            height: 500
+        },
         fillColor: {
             origin: point,
-            destination: point.add({ x: 50, y: 100}),
+            destination: point.add({ x: oneLineWidth / 2, y: 0}),
             gradient: {
                 stops: colors,
                 radial: false
             }
         }
     });
-    rectangle.closed = true;
+    let rectangleLeft = new paper.Path.Rectangle({
+        topRight: point,
+        size: {
+            width: oneLineWidth / 2,
+            height: 500
+        },
+        fillColor: {
+            origin: point,
+            destination: point.add({ x: -oneLineWidth / 2, y: 0}),
+            gradient: {
+                stops: colors,
+                radial: false
+            }
+        }
+    });
     paper.view.draw();
 });
 
@@ -86,5 +104,5 @@ function hueLambdaFunction(lambda) {
 function brightnessWidth(width, x) {
     let x_percent = x / width * 100;
 
-    return 0.01 * (100 - x_percent);
+    return x_percent > 60 ? 0.01 * (100 - (x_percent - 60)) : 1;
 }
