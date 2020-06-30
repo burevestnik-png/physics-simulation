@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -20,8 +21,10 @@
 }
 
 .simulation-name {
+    font-family: 'Marck Script', cursive;
+    font-size: 40px;
     margin-left: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
     color: white;
 }
 

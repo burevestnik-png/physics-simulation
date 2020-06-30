@@ -1,4 +1,4 @@
-const SCREEN_WIDTH = 1500;
+const SCREEN_WIDTH = $(document).width() * 0.8;
 const SCREEN_HEIGHT = 300;
 
 let currentA;
@@ -15,6 +15,7 @@ let defaultN;
 
 
 $(document).ready(function () {
+    console.log(SCREEN_WIDTH);
     paper.setup(document.getElementById("screen"));
 
     //перевод из см в м
