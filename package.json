@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "jquery": "*",
-    "normalize.css": "*"
+    "normalize.css": "*",
+    "paper": "*"
   },
   "author": "Yofik Inc.",
   "license": "ISC"
