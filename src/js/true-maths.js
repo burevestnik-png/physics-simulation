@@ -242,7 +242,7 @@ function hueLambdaFunction(lambda) {
 
     //голубой 150 - 200
     if (lambda < 510 && lambda >= 480) {
-        return 150 + 5/3 * (550 - lambda);
+        return 150 + 5/3 * (510 - lambda);
     }
 
     //синий 200 - 250
@@ -250,9 +250,9 @@ function hueLambdaFunction(lambda) {
         return 200 + 5/3 * (480 - lambda);
     }
 
-    //фиолетовый 250 - 280
+    //фиолетовый 250 - 270
     //lambda 450 - 380
-    return 250 + 3/7 * (450 - lambda);
+    return 250 + 2/7 * (450 - lambda);
 }
 
 // width of interferencionniy line
