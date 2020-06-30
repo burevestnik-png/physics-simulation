@@ -37,10 +37,10 @@
     </div>
 
     <form class="form">
-        <div class="a-block mok-grid">
-            <label class="a-label" for="a-input">
-                Расстояние от источника до призмы
-            </label>
+<!--        <div class="a-block mok-grid">-->
+<!--            <label class="a-label" for="a-input">-->
+<!--                Расстояние от источника до призмы-->
+<!--            </label>-->
 
             <div class="slider">
                 <input id="a-input" class="range" max="10" min="0" value="1" type="range">
@@ -62,12 +62,26 @@
                 <input type="range" id="b-input" min="1" max="10" step="0.1">
             </div>
 
-        <div class="teta-block mok-grid">
-            <label class="teta-label" for="teta-input">
-                Угол отклонения
-            </label>
-            <input id="teta-input" max="10" min="0" type="range">
-        </div>
+<!--        <div class="teta-block mok-grid">-->
+<!--            <label class="teta-label" for="teta-input">-->
+<!--                Угол отклонения-->
+<!--            </label>-->
+<!--            <input id="teta-input" max="10" min="0" type="range">-->
+<!--        </div>-->
+
+            <div class="n-block mok-grid">
+                <label class="n-label" for="n-input">
+                    Показатель преломления призмы
+                </label>
+                <input id="n-input" max="1.55" min="1.45" step="0.01" type="range">
+            </div>
+
+            <div class="lambda-block mok-grid">
+                <label class="lambda-label" for="lambda-input">
+                    Длина волны
+                </label>
+                <input id="lambda-input" max="780" min="380" step="10" type="range">
+            </div>
 
             <div class="teta-block">
                 <label for="teta-input" class="teta-label">
