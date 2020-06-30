@@ -8,6 +8,10 @@
     -ms-user-select: none;       /* Internet Explorer/Edge */
 }
 
+.main {
+    padding-bottom: 100px;
+}
+
 .header {
     height: 60px;
     display: flex;
@@ -85,4 +89,12 @@
 
 #reset:hover {
     background-color: grey;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    background-color: grey;
+    height: 80px;
+    width: 100%;
 }

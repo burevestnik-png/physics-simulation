@@ -25,12 +25,12 @@ $(document).ready(function () {
     currentTeta = radians(Number($('#teta-input').val()));
     currentN = Number($('#n-input').val());
 
-    defaultA = currentA;
+    defaultA = currentA * 100;
     defaultB = currentB
     defaultLambda = currentLambda;
     defaultN = currentN;
 
-    $('#a-label').text(currentA + " см");
+    $('#a-label').text(100 * currentA + " см");
     $('#b-label').text(currentB + " м");
     $('#n-label').text(currentN);
     $('#lambda-label').text(currentLambda + " нм");
@@ -39,7 +39,7 @@ $(document).ready(function () {
     $('#a-input').on('input', function () {
         //перевод из см в м
         currentA = 0.01 * Number($(this).val());
-        $('#a-label').text(currentA + " см");
+        $('#a-label').text((currentA * 100).toFixed(1) + " см");
         drawScreen();
     });
 
@@ -70,14 +70,14 @@ $(document).ready(function () {
     $('#reset').click(function () {
         currentN = defaultN;
         currentTeta = radians(defaultTeta);
-        currentA = defaultA;
+        currentA = 0.01 * defaultA;
         currentB = defaultB;
         currentLambda = defaultLambda;
 
-        $('#a-label').text(defaultN + " см");
+        $('#a-label').text(defaultA.toFixed(1) + " см");
         $('#b-label').text(defaultB + " м");
         $('#n-label').text(defaultN);
-        $('#lambda-label').text(currentLambda + " нм");
+        $('#lambda-label').text(defaultLambda + " нм");
         $('#teta-label').text(defaultTeta + " градусов");
 
         $('#a-input').val(defaultA);
