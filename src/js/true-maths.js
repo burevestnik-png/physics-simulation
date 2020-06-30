@@ -39,7 +39,7 @@ $(document).ready(function () {
     $('#a-input').on('input', function () {
         //перевод из см в м
         currentA = 0.01 * Number($(this).val());
-        $('#a-label').text(currentA * 100 + " см");
+        $('#a-label').text((currentA * 100).toFixed(1) + " см");
         drawScreen();
     });
 
@@ -74,7 +74,7 @@ $(document).ready(function () {
         currentB = defaultB;
         currentLambda = defaultLambda;
 
-        $('#a-label').text(defaultA + " см");
+        $('#a-label').text(defaultA.toFixed(1) + " см");
         $('#b-label').text(defaultB + " м");
         $('#n-label').text(defaultN);
         $('#lambda-label').text(defaultLambda + " нм");
