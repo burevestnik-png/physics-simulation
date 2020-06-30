@@ -113,15 +113,21 @@ function drawScreen() {
 
     let pictureWidth = pictureWidthFunction(currentB, currentTeta, currentN);
     let oneLineWidth = oneLineWidthFunction(currentA, currentB, currentLambda, currentTeta, currentN);
-    let lineNumber = Math.floor(pictureWidth / oneLineWidth);
+    let temp = pictureWidth / oneLineWidth;
+    let lineNumber = 0;
+    if (temp >= 1 && temp < 2) {
+        lineNumber = 1;
+    } else {
+        lineNumber = Math.floor(pictureWidth / oneLineWidth / 2);
+    }
 
     let hueLambda = hueLambdaFunction(currentLambda);
     let colors = getColors(oneLineWidth, hueLambda);
-    let points = createPoints(lineNumber, oneLineWidth);
-    // let point = new paper.Point({
-    //     x: 200,
-    //     y: 0
-    // });
+
+    console.log("pictureWidth: " + pictureWidth);
+    console.log("oneLineWidth: " + oneLineWidth);
+    console.log("lineNumber: " + lineNumber);
+    let points = createPoints(pictureWidth, lineNumber, oneLineWidth);
 
     points.forEach((point) => {
         createLeftRectangle(oneLineWidth, point, colors);
@@ -129,6 +135,14 @@ function drawScreen() {
     });
 
     paper.view.draw();
+}
+
+function getLineNumber(pictureWidth, oneLineWidth) {
+    let allLines = pictureWidth / oneLineWidth;
+    if (allLines >= 1 && allLines < 2) {
+        return  1;
+    }
+    return  Math.floor(pictureWidth / oneLineWidth / 2);
 }
 
 function getColors(oneLineWidth, hueLambda) {
@@ -144,27 +158,38 @@ function getColors(oneLineWidth, hueLambda) {
     return colors;
 }
 
-function createPoints(lineNumber, oneLineWidth) {
+function createPoints(pictureWidth, lineNumber, oneLineWidth) {
     let points = [];
-    let spaceBetweenLines = spaceBetweenLinesFunction(oneLineWidth, lineNumber);
+    let spaceBetweenLines = spaceBetweenLinesFunction(pictureWidth, oneLineWidth, lineNumber);
+    console.log("space: " + spaceBetweenLines);
 
     for (let i = 0; i < lineNumber; i++) {
+        let x = 0;
+
+        if (i === 0) {
+            x = (SCREEN_WIDTH - pictureWidth) / 2 + oneLineWidth / 2;
+        } else {
+            x = i * oneLineWidth * 2 + (SCREEN_WIDTH - pictureWidth) / 2 + oneLineWidth / 2;
+        }
+
         points.push(new paper.Point({
-            x: spaceBetweenLines * (i + 1) + oneLineWidth / 2,
+            x: x,
             y: 0
         }));
+
+        console.log("x" + i + ": " + x);
     }
 
     return points;
 }
 
-function spaceBetweenLinesFunction(oneLineWidth, lineNumber) {
-    return (SCREEN_WIDTH - oneLineWidth * lineNumber) / (lineNumber + 1);
+function spaceBetweenLinesFunction(pictureWidth, oneLineWidth, lineNumber) {
+    return (pictureWidth - oneLineWidth * lineNumber) / (lineNumber + 1);
 }
 
 function createLeftRectangle(oneLineWidth, point, colors) {
     new paper.Path.Rectangle({
-        topRight: point,
+        topRight: point.add({x: 1, y: 0}),
         size: {
             width: oneLineWidth / 2,
             height: SCREEN_HEIGHT
@@ -185,7 +210,7 @@ function createLeftRectangle(oneLineWidth, point, colors) {
 
 function createRightRectangle(oneLineWidth, point, colors) {
     new paper.Path.Rectangle({
-        topLeft: point,
+        topLeft: point.add({x: -1, y: 0}),
         size: {
             width: oneLineWidth / 2,
             height: SCREEN_HEIGHT
@@ -260,5 +285,5 @@ function hueLambdaFunction(lambda) {
 function brightnessWidth(width, x) {
     let x_percent = x / width * 100;
 
-    return x_percent > 40 ? 0.01 * (100 - (x_percent - 40)) : 1;
+    return x_percent > 10 ? 0.01 * (100 - (x_percent - 10)) : 1;
 }
