@@ -52,6 +52,13 @@
 
 .mok-grid {
     display: grid;
-    grid-template-columns: 300px 300px;
+    grid-template-columns: 300px 300px 100px;
     grid-column-gap: 10px;
+}
+
+.value-label,
+.prop-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
