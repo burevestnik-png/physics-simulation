@@ -45,6 +45,24 @@ function drawLines(screenPosition) {
     thirdPath.strokeColor = 'white';
     thirdPath.moveTo(new paper.Point(250, 150));
     thirdPath.lineTo(new paper.Point(currentPictureWidth * 200 + 300, 250));
+
+    //fourth line
+    let fourthPath = new paper.Path();
+    fourthPath.strokeColor = 'white';
+    fourthPath.moveTo(new paper.Point(250, 350));
+    fourthPath.lineTo(new paper.Point(currentPictureWidth * 200 + 300, 250));
+
+    //fifth line
+    let fifthPath = new paper.Path();
+    fifthPath.strokeColor = 'white';
+    fifthPath.moveTo(new paper.Point(300, 250));
+    fifthPath.lineTo(new paper.Point(currentPictureWidth * 200 / 2 + 300, 250 - currentRombHeight));
+
+    //sixth line
+    let sixthPath = new paper.Path();
+    sixthPath.strokeColor = 'white';
+    sixthPath.moveTo(new paper.Point(300, 250));
+    sixthPath.lineTo(new paper.Point(currentPictureWidth * 200 / 2 + 300, 250 + currentRombHeight));
 }
 
 function drawBlackBackground() {
@@ -86,7 +104,3 @@ function drawSimulationScreen() {
 
     return calculatedX;
 }
-
-$(document).ready(function () {
-    drawBiprizmSchema();
-});

@@ -41,6 +41,10 @@ body {
     margin-right: 30px;
 }
 
+.header button:hover {
+    background-color: #243b55;
+}
+
 .simulation-name {
     font-family: 'Marck Script', cursive;
     font-size: 40px;

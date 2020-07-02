@@ -14,6 +14,7 @@ let defaultTeta;
 let defaultN;
 
 let currentPictureWidth;
+let currentRombHeight;
 
 $(document).ready(function () {
     //перевод из см в м
@@ -61,7 +62,7 @@ $(document).ready(function () {
         currentTeta = radians(Number($(this).val()));
         $('#teta-label').text(Number($(this).val()) + " градусов");
         drawScreen();
-            drawBiprizmSchema();
+        drawBiprizmSchema();
     });
 
     $('#lambda-input').on('input', function () {
@@ -95,6 +96,7 @@ $(document).ready(function () {
     });
 
     drawScreen();
+    drawBiprizmSchema();
 });
 
 function radians(teta) {
@@ -332,8 +334,12 @@ function ab(a, teta, n) {
 function pictureWidthFunction(a, b, teta, n) {
     currentPictureWidth = 2 * ab(a, teta, n);
     if (b <= ab(a, teta, n)) {
+        currentRombHeight = 20000 * currentPictureWidth * teta * (n - 1) / 2;
+        console.log("sasi mudak: " + currentRombHeight);
         return 2 * b * teta * (n - 1) * 1e5;
     } else {
+        currentRombHeight = 20000 * currentPictureWidth * teta * (n - 1)/ 2;
+        console.log("sasi mudak: " + currentRombHeight);
         return 2 * ((a * Math.cos(teta * n) * Math.cos(teta * (n - 1))) / Math.cos(teta) - teta * b * (n - 1)) * 1e5;
     }
 }
