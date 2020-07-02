@@ -15,9 +15,6 @@ let defaultN;
 
 
 $(document).ready(function () {
-    // console.log(SCREEN_WIDTH);
-    paper.setup(document.getElementById("screen"));
-
     //перевод из см в м
     currentA = 0.01 * Number($('#a-input').val());
     currentB = Number($('#b-input').val());
@@ -98,8 +95,112 @@ function radians(teta) {
 }
 
 function drawScreen() {
+    paper.setup(document.getElementById("screen"));
     paper.project.clear();
 
+    printBlackScreen();
+
+    let pictureWidth = pictureWidthFunction(currentB, currentTeta, currentN);
+    let oneLineWidth = oneLineWidthFunction(currentA, currentB, currentLambda, currentTeta, currentN);
+    let lineNumber = getLineNumber(pictureWidth, oneLineWidth);
+
+    let hueLambda = hueLambdaFunction(currentLambda);
+    let colors = getColors(oneLineWidth, hueLambda);
+
+    let points = createPoints(pictureWidth, lineNumber, oneLineWidth);
+
+    if (points.length === 1 || points.length === 2) {
+       printWithoutSmooth(points, oneLineWidth, colors);
+    } else if (points.length === 3 || points.length === 4) {
+        printWithOneEndLineSmooth(points, oneLineWidth, colors);
+    } else if (points.length === 5 || points.length === 6) {
+        printWithTwoEndLineSmooth(points, oneLineWidth, colors);
+    } else {
+        printWithThreeEndLinesSmooth(points, oneLineWidth, colors);
+    }
+
+    paper.view.draw();
+}
+
+function printWithoutSmooth(points, oneLineWidth, colors) {
+    points.forEach((point) => {
+        printLine(point, oneLineWidth, colors);
+    });
+}
+
+function printWithOneEndLineSmooth(points, oneLineWidth, colors) {
+    for (let i = 0; i < points.length; i++) {
+        if (i === 0 || i === points.length - 1) {
+            let smoothColors = [];
+            colors.forEach((color) => smoothColors.push({...color}));
+
+            smoothColors.forEach((color) => color.brightness *= 0.4);
+            printLine(points[i], oneLineWidth, smoothColors);
+            continue;
+        }
+
+        printLine(points[i], oneLineWidth, colors);
+    }
+}
+
+function printWithTwoEndLineSmooth(points, oneLineWidth, colors) {
+    for (let i = 0; i < points.length; i++) {
+        if (i === 0 || i === points.length - 1) {
+            let smoothColors = [];
+            colors.forEach((color) => smoothColors.push({...color}));
+
+            smoothColors.forEach((color) => color.brightness *= 0.2);
+            printLine(points[i], oneLineWidth, smoothColors);
+            continue;
+        }
+
+        if (i === 1 || i === points.length - 2) {
+            let smoothColors = [];
+            colors.forEach((color) => smoothColors.push({...color}));
+
+            smoothColors.forEach((color) => color.brightness *= 0.4);
+            printLine(points[i], oneLineWidth, smoothColors);
+            continue;
+        }
+
+        printLine(points[i], oneLineWidth, colors);
+    }
+}
+
+function printWithThreeEndLinesSmooth(points, oneLineWidth, colors) {
+    for (let i = 0; i < points.length; i++) {
+        if (i === 0 || i === points.length - 1) {
+            let smoothColors = [];
+            colors.forEach((color) => smoothColors.push({...color}));
+
+            smoothColors.forEach((color) => color.brightness *= 0.2);
+            printLine(points[i], oneLineWidth, smoothColors);
+            continue;
+        }
+
+        if (i === 1 || i === points.length - 2) {
+            let smoothColors = [];
+            colors.forEach((color) => smoothColors.push({...color}));
+
+            smoothColors.forEach((color) => color.brightness *= 0.4);
+            printLine(points[i], oneLineWidth, smoothColors);
+            continue;
+        }
+
+        if (i === 2 || i === points.length - 3) {
+            let smoothColors = [];
+            colors.forEach((color) => smoothColors.push({...color}));
+
+            smoothColors.forEach((color) => color.brightness *= 0.6);
+            printLine(points[i], oneLineWidth, smoothColors);
+            continue;
+        }
+
+        printLine(points[i], oneLineWidth, colors);
+    }
+}
+
+function printBlackScreen() {
     new paper.Path.Rectangle({
         topLeft: {
             x:0,
@@ -111,31 +212,11 @@ function drawScreen() {
         },
         fillColor: '0x000000'
     });
+}
 
-    let pictureWidth = pictureWidthFunction(currentB, currentTeta, currentN);
-    let oneLineWidth = oneLineWidthFunction(currentA, currentB, currentLambda, currentTeta, currentN);
-    let temp = pictureWidth / oneLineWidth;
-    let lineNumber = 0;
-    if (temp >= 1 && temp < 2) {
-        lineNumber = 1;
-    } else {
-        lineNumber = Math.floor(pictureWidth / oneLineWidth / 2);
-    }
-
-    let hueLambda = hueLambdaFunction(currentLambda);
-    let colors = getColors(oneLineWidth, hueLambda);
-
-    // console.log("pictureWidth: " + pictureWidth);
-    // console.log("oneLineWidth: " + oneLineWidth);
-    // console.log("lineNumber: " + lineNumber);
-    let points = createPoints(pictureWidth, lineNumber, oneLineWidth);
-
-    points.forEach((point) => {
-        createLeftRectangle(oneLineWidth, point, colors);
-        createRightRectangle(oneLineWidth, point, colors);
-    });
-
-    paper.view.draw();
+function printLine(point, oneLineWidth, colors) {
+    createLeftRectangle(oneLineWidth, point, colors);
+    createRightRectangle(oneLineWidth, point, colors);
 }
 
 function getLineNumber(pictureWidth, oneLineWidth) {
@@ -162,7 +243,6 @@ function getColors(oneLineWidth, hueLambda) {
 function createPoints(pictureWidth, lineNumber, oneLineWidth) {
     let points = [];
     let spaceBetweenLines = spaceBetweenLinesFunction(pictureWidth, oneLineWidth, lineNumber);
-    // console.log("space: " + spaceBetweenLines);
 
     for (let i = 0; i < lineNumber; i++) {
         let x = 0;
@@ -178,7 +258,6 @@ function createPoints(pictureWidth, lineNumber, oneLineWidth) {
             y: 0
         }));
 
-        // console.log("x" + i + ": " + x);
     }
 
     return points;
