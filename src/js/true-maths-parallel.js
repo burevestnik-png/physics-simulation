@@ -13,6 +13,7 @@ let defaultLambda;
 let defaultTeta;
 let defaultN;
 
+let currentPictureWidth;
 
 $(document).ready(function () {
     //перевод из см в м
@@ -28,7 +29,7 @@ $(document).ready(function () {
     defaultLambda = currentLambda;
     defaultN = currentN;
 
-    $('#a-label').text(100 * currentA + " см");
+    $('#a-label').text((currentA * 100).toFixed(1) + " см");
     $('#b-label').text(currentB + " м");
     $('#n-label').text(currentN);
     $('#lambda-label').text(currentLambda + " нм");
@@ -101,17 +102,20 @@ function drawScreen() {
 
     printBlackScreen();
 
-    let pictureWidth = pictureWidthFunction(currentB, currentTeta, currentN);
-    let oneLineWidth = oneLineWidthFunction(currentA, currentB, currentLambda, currentTeta, currentN);
+    let pictureWidth = pictureWidthFunction(currentA / 2, currentB, currentTeta, currentN);
+    let oneLineWidth = oneLineWidthFunction(currentA / 2, currentB, currentLambda, currentTeta, currentN);
     let lineNumber = getLineNumber(pictureWidth, oneLineWidth);
 
+    console.log("pictureWidth: " + pictureWidth);
+    console.log("oneLineWidth: " + oneLineWidth);
+    console.log("lineNumber: " + lineNumber);
     let hueLambda = hueLambdaFunction(currentLambda);
     let colors = getColors(oneLineWidth, hueLambda);
 
     let points = createPoints(pictureWidth, lineNumber, oneLineWidth);
 
     if (points.length === 1 || points.length === 2) {
-       printWithoutSmooth(points, oneLineWidth, colors);
+        printWithoutSmooth(points, oneLineWidth, colors);
     } else if (points.length === 3 || points.length === 4) {
         printWithOneEndLineSmooth(points, oneLineWidth, colors);
     } else if (points.length === 5 || points.length === 6) {
@@ -310,14 +314,23 @@ function createRightRectangle(oneLineWidth, point, colors) {
     });
 }
 
-//1 см 100 пикселей
+//1 см 1000 пикселей
 function oneLineWidthFunction(a, b, lambda, teta, n) {
-    return (a + b) * lambda * (1e-9) / (2 * a * teta * (n - 1)) * 1e4;
+    return lambda * 1e-9 / (2 * teta * (n - 1)) * 1e5;
 }
 
-//1 см 100 пикселей
-function pictureWidthFunction(b, teta, n) {
-    return 2 * b * teta * (n - 1) * 1e4;
+function ab(a, teta, n) {
+    return (a * Math.cos(teta * n) * Math.cos(teta * (n - 1))) / (2 * teta * (n - 1) * Math.cos(teta));
+}
+
+//1 см 1000 пикселей
+function pictureWidthFunction(a, b, teta, n) {
+    currentPictureWidth = 2 * ab(a, teta, n);
+    if (b <= ab(a, teta, n)) {
+        return 2 * b * teta * (n - 1) * 1e5;
+    } else {
+        return 2 * ((a * Math.cos(teta * n) * Math.cos(teta * (n - 1))) / Math.cos(teta) - teta * b * (n - 1)) * 1e5;
+    }
 }
 
 function hueLambdaFunction(lambda) {

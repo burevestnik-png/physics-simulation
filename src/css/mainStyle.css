@@ -25,6 +25,22 @@ body {
     background-color: #121c29;
 }
 
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.header button {
+    border-radius: 5px;
+    background-color: #121c29;
+    outline: none;
+    margin-right: 30px;
+}
+
 .simulation-name {
     font-family: 'Marck Script', cursive;
     font-size: 40px;
@@ -85,7 +101,7 @@ body {
 
 .mok-grid {
     display: grid;
-    grid-template-columns: 300px 300px 100px;
+    grid-template-columns: 300px 300px 125px;
     grid-column-gap: 10px;
 }
 
