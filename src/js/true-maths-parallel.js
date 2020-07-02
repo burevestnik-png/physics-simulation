@@ -13,7 +13,7 @@ let defaultLambda;
 let defaultTeta;
 let defaultN;
 
-let currentPictureWidth;
+let currentRombLength;
 let currentRombHeight;
 
 $(document).ready(function () {
@@ -332,14 +332,14 @@ function ab(a, teta, n) {
 
 //1 см 1000 пикселей
 function pictureWidthFunction(a, b, teta, n) {
-    currentPictureWidth = 2 * ab(a, teta, n);
+    //выдерживаем масштаб рисунка
+    let abVar = ab(a, teta, n);
+    currentRombLength = 2 * abVar;
+    currentRombHeight = currentA / 2 * abVar / (currentA / 2 * teta * (n - 1) + currentRombLength);
+    console.log("currentRombHeight: " + currentRombHeight);
     if (b <= ab(a, teta, n)) {
-        currentRombHeight = 20000 * currentPictureWidth * teta * (n - 1) / 2;
-        console.log("sasi mudak: " + currentRombHeight);
         return 2 * b * teta * (n - 1) * 1e5;
     } else {
-        currentRombHeight = 20000 * currentPictureWidth * teta * (n - 1)/ 2;
-        console.log("sasi mudak: " + currentRombHeight);
         return 2 * ((a * Math.cos(teta * n) * Math.cos(teta * (n - 1))) / Math.cos(teta) - teta * b * (n - 1)) * 1e5;
     }
 }

@@ -29,40 +29,41 @@ function drawLines(screenPosition) {
     //first line
     let firstPath = new paper.Path();
     firstPath.strokeColor = 'white';
-    firstPath.moveTo(new paper.Point(0, 150));
-    firstPath.lineTo(new paper.Point(250, 150));
+    firstPath.moveTo(new paper.Point(0, 250 - currentA * 100 * 170 / 2));
+    firstPath.lineTo(new paper.Point(250,  250 - currentA * 100 * 170 / 2));
 
     //second line
     let secondPath = new paper.Path();
     secondPath.strokeColor = 'white';
-    secondPath.moveTo(new paper.Point(0, 350));
-    secondPath.lineTo(new paper.Point(250, 350));
+    secondPath.moveTo(new paper.Point(0, 250 + currentA * 100 * 170 / 2));
+    secondPath.lineTo(new paper.Point(250, 250 + currentA * 100 * 170 / 2));
 
-    console.log(currentPictureWidth);
+    console.log(currentRombLength);
 
     //third line
     let thirdPath = new paper.Path();
     thirdPath.strokeColor = 'white';
-    thirdPath.moveTo(new paper.Point(250, 150));
-    thirdPath.lineTo(new paper.Point(currentPictureWidth * 200 + 300, 250));
+    console.log("currentA: " + currentA);
+    thirdPath.moveTo(new paper.Point(250, 250 - currentA * 100 * 170 / 2));
+    thirdPath.lineTo(new paper.Point(currentRombLength * 200 + 300, 250));
 
     //fourth line
     let fourthPath = new paper.Path();
     fourthPath.strokeColor = 'white';
-    fourthPath.moveTo(new paper.Point(250, 350));
-    fourthPath.lineTo(new paper.Point(currentPictureWidth * 200 + 300, 250));
+    fourthPath.moveTo(new paper.Point(250, 250 + currentA * 100 * 170 / 2));
+    fourthPath.lineTo(new paper.Point(currentRombLength * 200 + 300, 250));
 
     //fifth line
     let fifthPath = new paper.Path();
     fifthPath.strokeColor = 'white';
     fifthPath.moveTo(new paper.Point(300, 250));
-    fifthPath.lineTo(new paper.Point(currentPictureWidth * 200 / 2 + 300, 250 - currentRombHeight));
+    fifthPath.lineTo(new paper.Point(currentRombLength * 200 / 2 + 300, 250 - currentRombHeight * 17000 + 6));
 
     //sixth line
     let sixthPath = new paper.Path();
     sixthPath.strokeColor = 'white';
     sixthPath.moveTo(new paper.Point(300, 250));
-    sixthPath.lineTo(new paper.Point(currentPictureWidth * 200 / 2 + 300, 250 + currentRombHeight));
+    sixthPath.lineTo(new paper.Point(currentRombLength * 200 / 2 + 300, 250 + currentRombHeight * 17000 - 6));
 }
 
 function drawBlackBackground() {
@@ -83,11 +84,11 @@ function drawBiprizm() {
     let path = new paper.Path();
     path.strokeColor = 'white';
 
-    let startBiprizm = new paper.Point(250, 150);
+    let startBiprizm = new paper.Point(250, 250 - currentA * 100 * 170 / 2);
 
     path.moveTo(startBiprizm);
-    path.lineTo(startBiprizm.add([0, 200]));
-    path.lineTo(startBiprizm.add([50, 100]));
+    path.lineTo(startBiprizm.add([0, currentA * 100 * 170]));
+    path.lineTo(startBiprizm.add([50,  currentA * 100 * 170 / 2]));
     path.lineTo(startBiprizm.add([0, 0]));
 }
 
