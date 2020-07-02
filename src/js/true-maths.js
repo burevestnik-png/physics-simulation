@@ -45,6 +45,7 @@ $(document).ready(function () {
         currentB = Number($(this).val());
         $('#b-label').text(currentB + " м");
         drawScreen();
+        drawBiprizmSchema();
     });
 
     $('#n-input').on('input', function () {
