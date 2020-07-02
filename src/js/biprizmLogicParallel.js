@@ -39,6 +39,12 @@ function drawLines(screenPosition) {
     secondPath.lineTo(new paper.Point(250, 350));
 
     console.log(currentPictureWidth);
+
+    //third line
+    let thirdPath = new paper.Path();
+    thirdPath.strokeColor = 'white';
+    thirdPath.moveTo(new paper.Point(250, 150));
+    thirdPath.lineTo(new paper.Point(currentPictureWidth * 200 + 300, 250));
 }
 
 function drawBlackBackground() {

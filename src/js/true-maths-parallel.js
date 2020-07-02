@@ -40,6 +40,7 @@ $(document).ready(function () {
         currentA = 0.01 * Number($(this).val());
         $('#a-label').text((currentA * 100).toFixed(1) + " см");
         drawScreen();
+        drawBiprizmSchema();
     });
 
     $('#b-input').on('input', function () {
@@ -53,18 +54,21 @@ $(document).ready(function () {
         currentN = Number($(this).val());
         $('#n-label').text(currentN);
         drawScreen();
+        drawBiprizmSchema();
     });
 
     $('#teta-input').on('input', function () {
         currentTeta = radians(Number($(this).val()));
         $('#teta-label').text(Number($(this).val()) + " градусов");
         drawScreen();
+            drawBiprizmSchema();
     });
 
     $('#lambda-input').on('input', function () {
         currentLambda = Number($(this).val());
         $('#lambda-label').text(currentLambda + " нм");
         drawScreen();
+        drawBiprizmSchema();
     });
 
     $('#reset').click(function () {
@@ -87,6 +91,7 @@ $(document).ready(function () {
         $('#teta-input').val(defaultTeta);
 
         drawScreen();
+        drawBiprizmSchema();
     });
 
     drawScreen();
