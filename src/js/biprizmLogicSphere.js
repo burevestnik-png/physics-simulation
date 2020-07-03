@@ -83,6 +83,22 @@ function drawLines(screenPosition) {
     eighthPath.strokeColor = 'white';
     eighthPath.moveTo(new paper.Point(screenPosition, 250 + firstHeight));
     eighthPath.lineTo(new paper.Point(screenPosition, 470));
+
+    //ninth path
+    let ninthPath = new paper.Path();
+    ninthPath.strokeColor = 'white';
+    ninthPath.moveTo(new paper.Point(50, 250));
+    ninthPath.lineTo(new paper.Point(250, 200));
+    ninthPath.lineTo(new paper.Point(273, 197));
+    ninthPath.lineTo(new paper.Point(screenPosition, 197));
+
+    //tenth path
+    let tenthPath = new paper.Path();
+    tenthPath.strokeColor = 'white';
+    tenthPath.moveTo(new paper.Point(50, 250));
+    tenthPath.lineTo(new paper.Point(250, 300));
+    tenthPath.lineTo(new paper.Point(273, 303));
+    tenthPath.lineTo(new paper.Point(screenPosition, 303));
 }
 
 function drawBlackBackground() {
