@@ -11,6 +11,17 @@ function drawBiprizmSchema() {
     paper.view.draw();
 }
 
+const path = new paper.Path();
+// Give the stroke a color
+path.strokeColor = 'white';
+let start = new paper.Point(100, 100);
+function onFrame(event) {
+    if (event.count < 101) {
+        path.add(start);
+        start = new paper.Point(100 + event.count, 1);
+    }
+}
+
 function drawLines(screenPosition) {
     let firstHeight = (screenPosition - 300) / 4;
 
